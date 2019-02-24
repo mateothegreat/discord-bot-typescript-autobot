@@ -12,7 +12,6 @@ const discord_js_commando_1 = require("discord.js-commando");
 require("moment-duration-format");
 const ChatMessage_1 = require("../../db/entity/ChatMessage");
 const index_1 = require("../../index");
-const { version } = require('../../../package');
 class InfoCommand extends discord_js_commando_1.Command {
     constructor(client) {
         super(client, {
@@ -45,7 +44,7 @@ class InfoCommand extends discord_js_commando_1.Command {
                     inline: true
                 });
             });
-            return msg.embed({
+            return yield msg.embed({
                 color: 3447003,
                 description: '**Top 10 Chatterboxes**',
                 fields

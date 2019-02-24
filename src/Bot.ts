@@ -1,8 +1,9 @@
-import { oneLine }        from 'common-tags';
-import { CommandoClient } from 'discord.js-commando';
-import * as path          from 'path';
-import { Logger }         from './Logger';
-import { MessageHandler } from './Messages/MessageHandler';
+import { oneLine }         from 'common-tags';
+import { CommandoClient }  from 'discord.js-commando';
+import * as path           from 'path';
+import { Logger }          from './Logger';
+import { GreetingHandler } from './Messages/GreetingHandler';
+import { MessageHandler }  from './Messages/MessageHandler';
 
 export class Bot {
 
@@ -77,6 +78,12 @@ export class Bot {
 
             })
 
+            .on('guildMemberAdd', (member => {
+
+                GreetingHandler.handle(member);
+
+            }))
+
             .on('message', (message => {
 
                 MessageHandler.handleMessage(message);
@@ -86,7 +93,8 @@ export class Bot {
         this.client.registry.registerGroups([
 
             [ 'info', 'Info' ],
-            [ 'xp', 'XP' ]
+            [ 'xp', 'XP' ],
+            [ 'search', 'Search' ],
 
         ]).registerDefaults().registerCommandsIn(path.join(__dirname, 'Commands'));
 

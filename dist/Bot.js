@@ -4,6 +4,7 @@ const common_tags_1 = require("common-tags");
 const discord_js_commando_1 = require("discord.js-commando");
 const path = require("path");
 const Logger_1 = require("./Logger");
+const GreetingHandler_1 = require("./Messages/GreetingHandler");
 const MessageHandler_1 = require("./Messages/MessageHandler");
 class Bot {
     start(token) {
@@ -43,12 +44,16 @@ class Bot {
             .on('groupStatusChange', (guild, group, enabled) => {
             Logger_1.Logger.log(common_tags_1.oneLine `Group ${group.id}${enabled ? 'enabled' : 'disabled'}${guild ? `in guild ${guild.name} (${guild.id})` : 'globally'}.`);
         })
+            .on('guildMemberAdd', (member => {
+            GreetingHandler_1.GreetingHandler.handle(member);
+        }))
             .on('message', (message => {
             MessageHandler_1.MessageHandler.handleMessage(message);
         }));
         this.client.registry.registerGroups([
             ['info', 'Info'],
-            ['xp', 'XP']
+            ['xp', 'XP'],
+            ['search', 'Search'],
         ]).registerDefaults().registerCommandsIn(path.join(__dirname, 'Commands'));
         this.client.login(token).then(() => {
             Logger_1.Logger.log('Bot logged into discord server..');

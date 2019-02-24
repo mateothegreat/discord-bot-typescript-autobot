@@ -5,11 +5,9 @@ import 'moment-duration-format';
 import { ChatMessage }                             from '../../db/entity/ChatMessage';
 import { DB }                                      from '../../index';
 
-const { version }: { version: string } = require('../../../package');
-
 export default class InfoCommand extends Command {
 
-    constructor(client: CommandoClient) {
+    public constructor(client: CommandoClient) {
 
         super(client, {
 
@@ -51,15 +49,17 @@ export default class InfoCommand extends Command {
                 inline: true
 
             });
+
         });
 
-        return msg.embed({
+        return await msg.embed({
 
             color: 3447003,
             description: '**Top 10 Chatterboxes**',
             fields
 
         });
+
 
     }
 
