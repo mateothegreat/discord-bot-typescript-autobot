@@ -9,29 +9,38 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const discord_js_commando_1 = require("discord.js-commando");
+const RaffleUser_1 = require("../../db/entity/RaffleUser");
+const index_1 = require("../../index");
 class LMGTFYCommand extends discord_js_commando_1.Command {
     constructor(client) {
         super(client, {
-            name: 'google',
-            aliases: ['lmgtfy'],
-            group: 'search',
-            memberName: 'google',
-            description: 'Creates a lmgtfy.com link',
+            name: 'raffleadd',
+            aliases: ['raffleadd'],
+            group: 'raffle',
+            memberName: 'raffleadd',
+            description: 'Adds a user to the current raffle.',
             guildOnly: false,
             throttling: {
-                usages: 2,
-                duration: 30
+                usages: 1,
+                duration: 3600
             }
         });
     }
-    run(msg) {
+    run(message) {
         return __awaiter(this, void 0, void 0, function* () {
-            return msg.embed({
+            if (!message.author.bot) {
+                let raffleUser = new RaffleUser_1.RaffleUser();
+                raffleUser.userid = message.author.id;
+                raffleUser.discriminator = message.author.discriminator;
+                raffleUser.username = message.author.username;
+                index_1.DB.manager.save(raffleUser);
+            }
+            return message.embed({
                 color: 3447003,
-                description: 'cough cough',
+                description: 'Mohthly Raffle',
                 fields: [{
-                        name: 'Let me google that for you..',
-                        value: `https://lmgtfy.com/?q=${encodeURI(msg.argString)}`,
+                        name: `❯ You've been added to this months raffle!`,
+                        value: `1-month Nitro gift by one of our members. Use > raffleadd to get your hat in the ring! Raffles results will be announced at the end of the month.`,
                         inline: true
                     }]
             });
@@ -39,4 +48,4 @@ class LMGTFYCommand extends discord_js_commando_1.Command {
     }
 }
 exports.default = LMGTFYCommand;
-//# sourceMappingURL=LMGTFYCommand.js.map
+//# sourceMappingURL=RaffleAddCommand.js.map

@@ -4,7 +4,9 @@ import 'reflect-metadata';
 import { Connection, createConnection } from 'typeorm';
 import { Bot }                          from './Bot';
 import { ChatMessage }                  from './db/entity/ChatMessage';
+import { KarmaPoint }                   from './db/entity/KarmaPoint';
 import { Poll }                         from './db/entity/Poll';
+import { RaffleUser }                   from './db/entity/RaffleUser';
 
 export let DB: Connection;
 
@@ -24,7 +26,9 @@ async function dbConnect() {
             database: "autobot",
             entities: [
                 ChatMessage,
-                Poll
+                KarmaPoint,
+                Poll,
+                RaffleUser
             ],
             synchronize: true,
             logging: true

@@ -12,11 +12,11 @@ const discord_js_commando_1 = require("discord.js-commando");
 class LMGTFYCommand extends discord_js_commando_1.Command {
     constructor(client) {
         super(client, {
-            name: 'google',
-            aliases: ['lmgtfy'],
-            group: 'search',
-            memberName: 'google',
-            description: 'Creates a lmgtfy.com link',
+            name: 'raffle',
+            aliases: ['raffle'],
+            group: 'raffle',
+            memberName: 'raffle',
+            description: 'Displays current raffle information.',
             guildOnly: false,
             throttling: {
                 usages: 2,
@@ -28,10 +28,10 @@ class LMGTFYCommand extends discord_js_commando_1.Command {
         return __awaiter(this, void 0, void 0, function* () {
             return msg.embed({
                 color: 3447003,
-                description: 'cough cough',
+                description: 'Mohthly Raffle',
                 fields: [{
-                        name: 'Let me google that for you..',
-                        value: `https://lmgtfy.com/?q=${encodeURI(msg.argString)}`,
+                        name: '❯ This months raffle',
+                        value: `1-month Nitro gift by one of our members. Use > raffleadd to get your hat in the ring! Raffles results will be announced at the end of the month.`,
                         inline: true
                     }]
             });
@@ -39,4 +39,4 @@ class LMGTFYCommand extends discord_js_commando_1.Command {
     }
 }
 exports.default = LMGTFYCommand;
-//# sourceMappingURL=LMGTFYCommand.js.map
+//# sourceMappingURL=RaffleCommand.js.map

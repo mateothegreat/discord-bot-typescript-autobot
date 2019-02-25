@@ -5,6 +5,7 @@ const discord_js_commando_1 = require("discord.js-commando");
 const path = require("path");
 const Logger_1 = require("./Logger");
 const GreetingHandler_1 = require("./Messages/GreetingHandler");
+const KarmaHandler_1 = require("./Messages/KarmaHandler");
 const MessageHandler_1 = require("./Messages/MessageHandler");
 class Bot {
     start(token) {
@@ -49,11 +50,13 @@ class Bot {
         }))
             .on('message', (message => {
             MessageHandler_1.MessageHandler.handleMessage(message);
+            KarmaHandler_1.KarmaHandler.handle(message);
         }));
         this.client.registry.registerGroups([
             ['info', 'Info'],
             ['xp', 'XP'],
             ['search', 'Search'],
+            ['raffle', 'Raffle'],
         ]).registerDefaults().registerCommandsIn(path.join(__dirname, 'Commands'));
         this.client.login(token).then(() => {
             Logger_1.Logger.log('Bot logged into discord server..');

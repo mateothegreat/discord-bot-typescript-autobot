@@ -13,7 +13,9 @@ require("reflect-metadata");
 const typeorm_1 = require("typeorm");
 const Bot_1 = require("./Bot");
 const ChatMessage_1 = require("./db/entity/ChatMessage");
+const KarmaPoint_1 = require("./db/entity/KarmaPoint");
 const Poll_1 = require("./db/entity/Poll");
+const RaffleUser_1 = require("./db/entity/RaffleUser");
 dotenv.config();
 function dbConnect() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -27,7 +29,9 @@ function dbConnect() {
                 database: "autobot",
                 entities: [
                     ChatMessage_1.ChatMessage,
-                    Poll_1.Poll
+                    KarmaPoint_1.KarmaPoint,
+                    Poll_1.Poll,
+                    RaffleUser_1.RaffleUser
                 ],
                 synchronize: true,
                 logging: true

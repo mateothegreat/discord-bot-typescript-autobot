@@ -8,11 +8,11 @@ export default class LMGTFYCommand extends Command {
 
         super(client, {
 
-            name: 'google',
-            aliases: [ 'lmgtfy' ],
-            group: 'search',
-            memberName: 'google',
-            description: 'Creates a lmgtfy.com link',
+            name: 'raffle',
+            aliases: [ 'raffle' ],
+            group: 'raffle',
+            memberName: 'raffle',
+            description: 'Displays current raffle information.',
             guildOnly: false,
             throttling: {
 
@@ -30,11 +30,11 @@ export default class LMGTFYCommand extends Command {
         return msg.embed({
 
             color: 3447003,
-            description: 'cough cough',
+            description: 'Mohthly Raffle',
             fields: [ {
 
-                name: 'Let me google that for you..',
-                value: `https://lmgtfy.com/?q=${ encodeURI(msg.argString) }`,
+                name: '❯ This months raffle',
+                value: `1-month Nitro gift by one of our members. Use > raffleadd to get your hat in the ring! Raffles results will be announced at the end of the month.`,
                 inline: true
 
             } ]

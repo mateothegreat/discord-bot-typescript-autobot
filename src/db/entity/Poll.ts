@@ -10,5 +10,3 @@ export class Poll {
     title: string;
 
 }
-
-

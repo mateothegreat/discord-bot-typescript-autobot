@@ -3,6 +3,7 @@ import { CommandoClient }  from 'discord.js-commando';
 import * as path           from 'path';
 import { Logger }          from './Logger';
 import { GreetingHandler } from './Messages/GreetingHandler';
+import { KarmaHandler }    from './Messages/KarmaHandler';
 import { MessageHandler }  from './Messages/MessageHandler';
 
 export class Bot {
@@ -87,6 +88,7 @@ export class Bot {
             .on('message', (message => {
 
                 MessageHandler.handleMessage(message);
+                KarmaHandler.handle(message);
 
             }));
 
@@ -95,6 +97,7 @@ export class Bot {
             [ 'info', 'Info' ],
             [ 'xp', 'XP' ],
             [ 'search', 'Search' ],
+            [ 'raffle', 'Raffle' ],
 
         ]).registerDefaults().registerCommandsIn(path.join(__dirname, 'Commands'));
 
