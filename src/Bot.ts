@@ -6,6 +6,8 @@ import { GreetingHandler } from './Messages/GreetingHandler';
 import { KarmaHandler }    from './Messages/KarmaHandler';
 import { MessageHandler }  from './Messages/MessageHandler';
 
+export let CLIENT: CommandoClient;
+
 export class Bot {
 
     private client: CommandoClient;
@@ -23,6 +25,8 @@ export class Bot {
             owner: process.env.OWNER_ID
 
         });
+
+        CLIENT = this.client;
 
         this.client
 
