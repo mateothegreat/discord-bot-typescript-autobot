@@ -1,12 +1,15 @@
 FROM node:alpine AS builder
 
+WORKDIR /app
+
 RUN adduser -S bot
 
 COPY package.json .
 
 RUN npm install
+RUN npm run build
 
-COPY bot.js /bot.js
+COPY . .
 
 #
 # Change to a less-privileged user than root in the
@@ -17,4 +20,4 @@ USER bot
 #
 # Starts the bot when the docker container is started
 #
-ENTRYPOINT ["node", "bot.js"]
+ENTRYPOINT ["npm", "start"]

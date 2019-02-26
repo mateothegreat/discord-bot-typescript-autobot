@@ -1,0 +1,21 @@
+apiVersion: apps/v1                 # API Version of this Object
+kind: Deployment                    # This Object Type
+metadata:                           # Allows you to specify custom metadata
+  name: $APP                       # Specifies the name of this object
+spec:                               # The official specification matching object type schema
+  selector:                         # Label selector for pods
+    matchLabels:                    # Must match these label(s)
+      app: $APP                    # Custom label with value
+  template:                         # Template describes the pods that are created
+    metadata:                       # Standard objects metadata
+      labels:                       # Labels used to group/categorize objects
+        app: $APP                  # The name of this template
+    spec:                           # Specification of the desired behaviour of this pod
+      containers:                   # List of containers belonging to this pod (cannot be changed/updated)
+        - name: $APP                 # Name of this container
+          image: $IMAGE                # Docker image used for this container
+          env:
+            - name: TOKEN
+              value: $TOKEN
+            - name: OWNER_ID
+              value: $OWNER_ID

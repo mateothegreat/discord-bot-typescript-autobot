@@ -12,12 +12,12 @@ export class KarmaHandler {
 
             CLIENT.fetchUser(matches[ 2 ]).then(member => {
 
-                CLIENT.guilds.first().channels.get('513072716622987276').send(`Way to go @${ member.username }#${ member.discriminator } you've earned a karma point!`);
+                // CLIENT.guilds.first().channels.get('513072716622987276').send(`Way to go @${ member.username }#${ member.discriminator } you've earned a karma point!`);
 
-                member.guild
-                      .channels
-                      .get('513072716622987276')
-                      .send(this.GREETINGS[ Math.floor(Math.random() * this.GREETINGS.length) ].replace(':name:', member));
+                // member.guild
+                //       .channels
+                //       .get('513072716622987276')
+                //       .send(this.GREETINGS[ Math.floor(Math.random() * this.GREETINGS.length) ].replace(':name:', member));
 
             });
 
