@@ -3,18 +3,15 @@ import { CLIENT }             from '../Bot';
 import { KarmaPoint }         from '../db/entity/KarmaPoint';
 import { DB }                 from '../index';
 
-export class KarmaHandler {
+export class KarmaPointHandler {
 
     public static handle(message: Message): any {
 
         const matches = message.content.match(/(thanks|thank you).*?<@(.*?)>/);
-        console.log(matches);
 
         if (matches && matches.length > 0) {
 
             CLIENT.fetchUser(matches[ 2 ]).then(member => {
-
-                console.log(member);
 
                 if (message.member.id === member.id) {
 
@@ -49,7 +46,6 @@ export class KarmaHandler {
             });
 
         }
-        // message.reply();
 
     }
 

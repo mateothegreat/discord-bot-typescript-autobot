@@ -1,10 +1,10 @@
-import { oneLine }         from 'common-tags';
-import { CommandoClient }  from 'discord.js-commando';
-import * as path           from 'path';
-import { Logger }          from './Logger';
-import { GreetingHandler } from './Messages/GreetingHandler';
-import { KarmaHandler }    from './Messages/KarmaHandler';
-import { MessageHandler }  from './Messages/MessageHandler';
+import { oneLine }           from 'common-tags';
+import { CommandoClient }    from 'discord.js-commando';
+import * as path             from 'path';
+import { Logger }            from './Logger';
+import { GreetingHandler }   from './Messages/GreetingHandler';
+import { KarmaPointHandler } from './Messages/KarmaPointHandler';
+import { MessageHandler }    from './Messages/MessageHandler';
 
 export let CLIENT: CommandoClient;
 
@@ -39,6 +39,16 @@ export class Bot {
             .on('ready', () => {
 
                 Logger.log(`Client ready; logged in as ${ this.client.user.username }#${ this.client.user.discriminator } (${ this.client.user.id })`);
+
+                this.client.user.setActivity('Eating puffins!');
+
+                this.client.user.setPresence({
+                    game: {
+                        name: 'all the things!',
+                        type: 'WATCHING',
+                    },
+                    status: 'idle'
+                });
 
             })
 
@@ -92,7 +102,7 @@ export class Bot {
             .on('message', (message => {
 
                 MessageHandler.handleMessage(message);
-                KarmaHandler.handle(message);
+                KarmaPointHandler.handle(message);
 
             }));
 
