@@ -44,7 +44,7 @@ export default class LMGTFYCommand extends Command {
         return message.embed({
 
             color: 3447003,
-            description: 'Mohthly Raffle',
+            description: 'Bitmerge Monthly Raffle',
             fields: [ {
 
                 name: `❯ You've been added to this months raffle!`,

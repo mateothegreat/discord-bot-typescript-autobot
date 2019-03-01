@@ -7,13 +7,22 @@ export class KarmaPoint {
     id: number;
 
     @Column()
-    userid: string;
+    from_userid: string;
 
     @Column()
-    discriminator: string;
+    from_discriminator: string;
 
     @Column()
-    username: string;
+    from_username: string;
+
+    @Column()
+    to_userid: string;
+
+    @Column()
+    to_discriminator: string;
+
+    @Column()
+    to_username: string;
 
     @CreateDateColumn()
     createdDate: Date;

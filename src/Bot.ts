@@ -99,9 +99,10 @@ export class Bot {
         this.client.registry.registerGroups([
 
             [ 'info', 'Info' ],
-            [ 'xp', 'XP' ],
-            [ 'search', 'Search' ],
+            [ 'fun', 'Fun Stuff' ],
             [ 'raffle', 'Raffle' ],
+            [ 'search', 'Search' ],
+            [ 'xp', 'XP' ],
 
         ]).registerDefaults().registerCommandsIn(path.join(__dirname, 'Commands'));
 
