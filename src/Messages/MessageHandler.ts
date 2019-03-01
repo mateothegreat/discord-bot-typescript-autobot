@@ -1,12 +1,37 @@
-import { Message }     from 'discord.js';
-import { ChatMessage } from '../db/entity/ChatMessage';
-import { DB }          from '../index';
+import { Message, RichEmbed } from 'discord.js';
+import { CLIENT }             from '../Bot';
+import { ChatMessage }        from '../db/entity/ChatMessage';
+import { DB }                 from '../index';
 
 export class MessageHandler {
 
-    public static handleMessage(message: Message): void {
+    public static async handleMessage(message: Message): void {
 
         if (!message.author.bot) {
+
+            if (!message.member.roles.find(role => role.name === 'Active')) {
+
+                const results = await DB.getRepository(ChatMessage)
+                                        .createQueryBuilder('chat_messages')
+                                        .select([ 'COUNT(chat_messages.id) AS total' ])
+                                        .where('userid = :userid', { userid: message.member.id })
+                                        .getRawOne();
+
+                if (results.total >= 15) {
+
+                    message.member.addRole(message.guild.roles.find(role => role.name === 'Active'));
+
+                    const embed = new RichEmbed().setTitle(`Learn more about Server Roles..`)
+                                                 .setDescription(`Congratulations <@${ message.member.id }>, you've received a the Active Role! You can now join the voice chat and #voice-text channels and raffles.`)
+                                                 .setColor(0x00AE86)
+                                                 .setURL("https://forum.bitmerge.org/t/roles");
+
+                    // @ts-ignore
+                    CLIENT.guilds.first().channels.get(message.channel.id).send({ embed });
+
+                }
+
+            }
 
             let chatMessage: ChatMessage = new ChatMessage();
 

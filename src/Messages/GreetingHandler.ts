@@ -14,13 +14,10 @@ export class GreetingHandler {
     ];
 
     /*
-
      * Sends a random welcome message and deletes it shortly after.
      *
      */
     public static handle(member: any): void {
-
-        // setTimeout(() => {513072716622987276
 
         member.guild
               .channels
@@ -32,8 +29,6 @@ export class GreetingHandler {
 
               });
 
-        // }, 15000);
-
     }
-    
+
 }

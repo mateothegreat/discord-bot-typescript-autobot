@@ -50,6 +50,8 @@ export class Bot {
                     status: 'idle'
                 });
 
+                // CLIENT.guilds.first().channels.get('548784663909629952').send(`Bot restart, online now :clap:`);
+
             })
 
             .on('disconnect', () => {
