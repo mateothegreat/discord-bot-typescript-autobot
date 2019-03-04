@@ -2,6 +2,8 @@
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 import 'moment-duration-format';
+import { TriviaQuestion }                          from '../../db/entity/TriviaQuestion';
+import { DB }                                      from '../../index';
 
 export default class TriviaNextCommand extends Command {
 
@@ -29,45 +31,52 @@ export default class TriviaNextCommand extends Command {
     // @ts-ignore
     public async run(message: CommandMessage): Promise<Message | Message[]> {
 
-        const quiz = [
+        let question: TriviaQuestion;
 
-            {
+        const matches = message.content.match(/(\d+)/);
 
-                question: "True or False: Docker containers provide only immutable operating environments",
-                answers: [ 'false' ]
+        if (!!matches) {
 
-            }, {
+            question = await DB.getRepository(TriviaQuestion)
+                               .createQueryBuilder('trivia_question')
+                               .select([ 'id', 'question', 'answer' ])
+                               .where('id = :id', { id: matches[ 1 ] })
+                               .getRawOne();
 
-                question: "True or False: With Kubernetes, kube-scheduler runs on both worker and master nodes",
-                answers: [ 'false' ]
+        } else {
 
-            }, {
+            question = await DB.getRepository(TriviaQuestion)
+                               .createQueryBuilder('trivia_question')
+                               .select([ 'id', 'question', 'answer' ])
+                               .orderBy('RAND()')
+                               .limit(1)
+                               .getRawOne();
 
-                question: "In a load balanced setup, at a minimum, how many nodes makes a 'quorom'?",
-                answers: [ '3' ]
-
-            }, ];
-
-        const item = quiz[ Math.floor(Math.random() * quiz.length) ];
+        }
 
         const filter = (response: any) => {
 
-            return item.answers.some((answer: any) => answer.toLowerCase() === response.content.toLowerCase());
+            return question.answer ? 'true' === response.content.toLowerCase() : 'false' == response.content.toLowerCase();
 
         };
 
-        message.channel.send(item.question).then(() => {
+        message.channel.sendEmbed({
+
+            color: 3447003,
+            description: `True or False: **${ question.question }**`
+
+        }).then(() => {
 
             message.channel
                    .awaitMessages(filter, { maxMatches: 1, time: 60 * 60 * 1000, errors: [ 'time' ] })
                    .then(collected => {
 
-                       message.channel.send(`Thanks <@${ collected.first().author.id }>! You got the correct answer!`);
+                       message.channel.send(`Woohoo <@${ collected.first().author.id }>! You got the correct answer!`);
 
                    })
                    .catch(collected => {
 
-                       message.channel.send(`Looks like nobody got the answer this time. The correct answer was '${ item.answers[ 0 ] }'.`);
+                       message.channel.send(`Looks like nobody got the answer this time. The correct answer was '${ question.answer ? 'true' : 'false' }'.`);
 
                    });
 
