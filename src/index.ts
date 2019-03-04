@@ -5,8 +5,8 @@ import { Connection, createConnection } from 'typeorm';
 import { Bot }                          from './Bot';
 import { ChatMessage }                  from './db/entity/ChatMessage';
 import { KarmaPoint }                   from './db/entity/KarmaPoint';
-import { Poll }                         from './db/entity/Poll';
 import { RaffleUser }                   from './db/entity/RaffleUser';
+import { TriviaQuestion }               from './db/entity/TriviaQuestion';
 
 export let DB: Connection;
 
@@ -27,7 +27,7 @@ async function dbConnect() {
             entities: [
                 ChatMessage,
                 KarmaPoint,
-                Poll,
+                TriviaQuestion,
                 RaffleUser
             ],
             synchronize: true,

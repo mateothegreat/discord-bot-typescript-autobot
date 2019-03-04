@@ -40,8 +40,6 @@ export class Bot {
 
                 Logger.log(`Client ready; logged in as ${ this.client.user.username }#${ this.client.user.discriminator } (${ this.client.user.id })`);
 
-                this.client.user.setActivity('Eating puffins!');
-
                 this.client.user.setPresence({
                     game: {
                         name: 'all the things!',
@@ -113,7 +111,7 @@ export class Bot {
             [ 'info', 'Info' ],
             [ 'fun', 'Fun Stuff' ],
             [ 'karma', 'Karma Points' ],
-            [ 'polls', 'Polls' ],
+            [ 'trivia', 'Polls' ],
             [ 'raffle', 'Raffle' ],
             [ 'search', 'Search' ],
             [ 'xp', 'XP' ],

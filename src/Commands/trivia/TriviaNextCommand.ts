@@ -3,22 +3,22 @@ import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 import 'moment-duration-format';
 
-export default class PollCommand extends Command {
+export default class TriviaNextCommand extends Command {
 
     public constructor(client: CommandoClient) {
 
         super(client, {
 
-            name: 'poll.next',
-            aliases: [ 'poll.next' ],
-            group: 'polls',
-            memberName: 'poll.next',
-            description: 'Displays the next poll.',
+            name: 'trivia.next',
+            aliases: [ 'trivia.next' ],
+            group: 'trivia',
+            memberName: 'trivia.next',
+            description: 'Asks a trivia question',
             guildOnly: false,
             throttling: {
 
                 usages: 1,
-                duration: 86400
+                duration: 30000
 
             }
 
@@ -38,8 +38,13 @@ export default class PollCommand extends Command {
 
             }, {
 
-                question: "True or False: Docker containers provide only immutable operating environments",
+                question: "True or False: With Kubernetes, kube-scheduler runs on both worker and master nodes",
                 answers: [ 'false' ]
+
+            }, {
+
+                question: "In a load balanced setup, at a minimum, how many nodes makes a 'quorom'?",
+                answers: [ '3' ]
 
             }, ];
 

@@ -40,6 +40,9 @@ export class MessageHandler {
             chatMessage.username = message.author.username;
             chatMessage.content = message.content;
 
+            // @ts-ignore
+            chatMessage.channel = message.channel.name;
+
             DB.manager.save(chatMessage);
 
         }
