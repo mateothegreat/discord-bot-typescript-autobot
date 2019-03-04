@@ -34,7 +34,7 @@ export class KarmaPointHandler {
 
                     const embed = new RichEmbed().setTitle(`Learn more about Karma Points..`)
                                                  .setDescription(`Congratulations <@${ member.id }>, you've received a Karma Point!`)
-                                                 .setAuthor(`Karma From ${ member.username }`)
+                                                 .setAuthor(`Karma From ${ message.author.username }`)
                                                  .setColor(0x00AE86)
                                                  .setURL("https://forum.bitmerge.org/t/karma");
 

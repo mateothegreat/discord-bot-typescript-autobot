@@ -112,6 +112,8 @@ export class Bot {
 
             [ 'info', 'Info' ],
             [ 'fun', 'Fun Stuff' ],
+            [ 'karma', 'Karma Points' ],
+            [ 'polls', 'Polls' ],
             [ 'raffle', 'Raffle' ],
             [ 'search', 'Search' ],
             [ 'xp', 'XP' ],

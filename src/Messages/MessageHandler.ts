@@ -5,7 +5,7 @@ import { DB }                 from '../index';
 
 export class MessageHandler {
 
-    public static async handleMessage(message: Message): void {
+    public static async handleMessage(message: Message) {
 
         if (!message.author.bot) {
 

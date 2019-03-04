@@ -25,7 +25,7 @@ export class GreetingHandler {
               .send(this.GREETINGS[ Math.floor(Math.random() * this.GREETINGS.length) ].replace(':name:', member))
               .then((message: Message) => {
 
-                  message.delete(86400 * 2);
+                  message.delete(86400 * 2 * 1000);
 
               });
 
