@@ -2,6 +2,7 @@
 import { Channel, Message }                        from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 import 'moment-duration-format';
+import { Config }                                  from '../../Config';
 
 export default class ChannelTopicSet extends Command {
 
@@ -28,11 +29,9 @@ export default class ChannelTopicSet extends Command {
 
     public async run(message: CommandMessage): Promise<Message | Message[]> {
 
-        if (message.member.roles.find(role => role.name === 'Sudoers') || message.member.roles.find(role => role.name === 'Terabytes')) {
+        if (message.member.roles.find(role => Config.ROLES_ADMIN.indexOf(role.name) > -1)) {
 
             const matches = message.cleanContent.match(/#(.*?):\s+(.*)/);
-
-            console.log(matches);
 
             if (matches.length === 3) {
 
