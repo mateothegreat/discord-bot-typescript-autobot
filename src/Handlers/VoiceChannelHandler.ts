@@ -19,12 +19,8 @@ export class VoiceChannelHandler {
 
             let channel = newMember.guild
                                    .channels
-                                   .get('548784663909629952');
+                                   .get('548990357996699651');
             // .get('548990357996699651');
-
-            const embed: RichEmbed = new RichEmbed().setColor('RANDOM')
-                                                    .setThumbnail(newMember.user.avatarURL)
-                                                    .setDescription(`<@${ newMember.user.id }> just joined voice chat.. say hi!`);
 
             // @ts-ignore
             channel.sendEmbed(new RichEmbed().setColor('RANDOM')

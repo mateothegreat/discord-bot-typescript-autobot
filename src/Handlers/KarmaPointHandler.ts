@@ -56,6 +56,6 @@ export class KarmaPointHandler {
         }
 
     }
-
+ 
 }
 

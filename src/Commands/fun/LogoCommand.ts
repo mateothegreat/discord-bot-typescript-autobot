@@ -1,5 +1,5 @@
 // @ts-ignore
-import { Message }                                 from 'discord.js';
+import { Message, RichEmbed }                      from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 
 export default class ColorCommand extends Command {
@@ -32,17 +32,31 @@ export default class ColorCommand extends Command {
         //
         // const matches = msg.content.match(/>color #(.*)/);
         //
-        // const embed = new RichEmbed().setImage('https://forum.bitmerge.org/uploads/default/original/1X/60874dc358ef63929f3ba8094b05401a080a54af.svg')
-        //                              .setTitle('Welcome to bitmerge')
-        //                              .setDescription('Welcome to bitmerge!');
+        const embed = new RichEmbed().setImage('file://assets/logo.png')
+                                     .setTitle('Welcome to bitmerge')
+                                     .setDescription("Welcome to bitmerge!\n\nCheck out our forum at https://forum.bitmerge.org/ and our github at https://github.com/bitmerge.\n\nDon't forget to tell us about yourself in #introduct-yourself!");
 
-        msg.channel.sendMessage({
-            embed: {
-                color: 3447003,
-                description: 'Welcome to bitmerge!',
-                image: { url: 'https://forum.bitmerge.org/uploads/default/original/1X/60874dc358ef63929f3ba8094b05401a080a54af.svg' }
-            }
+        msg.channel.sendEmbed({
+            color: 3447003,
+            description: "Welcome to **bitmerge**!\nWe're a community of technology enthusiasts, developers and devops engineers.\n\nCheck out our forum at https://forum.bitmerge.org/ and our github at https://github.com/bitmerge.\n\nDon't forget to tell us about yourself in #introduct-yourself!",
+            files: [
+
+                'assets/logo.png'
+
+            ]
         });
+
+        //     msg.channel.sendMessage({
+        //         embed: {
+        //             color: 3447003,
+        //             description: 'Welcome to bitmerge!',
+        //             files: [
+        //
+        //                 'assets/logo.png'
+        //
+        //             ]
+        //         }
+        // });
 
         // return msg.embed(embed);
 
