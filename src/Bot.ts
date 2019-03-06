@@ -1,10 +1,12 @@
-import { oneLine }           from 'common-tags';
-import { CommandoClient }    from 'discord.js-commando';
-import * as path             from 'path';
-import { Logger }            from './Logger';
-import { GreetingHandler }   from './Messages/GreetingHandler';
-import { KarmaPointHandler } from './Messages/KarmaPointHandler';
-import { MessageHandler }    from './Messages/MessageHandler';
+import { oneLine }             from 'common-tags';
+import { CommandoClient }      from 'discord.js-commando';
+import * as path               from 'path';
+import { GreetingHandler }     from './Handlers/GreetingHandler';
+import { GuildAddHandler }     from './Handlers/GuildAddHandler';
+import { KarmaPointHandler }   from './Handlers/KarmaPointHandler';
+import { MessageHandler }      from './Handlers/MessageHandler';
+import { VoiceChannelHandler } from './Handlers/VoiceChannelHandler';
+import { Logger }              from './Logger';
 
 export let CLIENT: CommandoClient;
 
@@ -96,8 +98,15 @@ export class Bot {
             .on('guildMemberAdd', (member => {
 
                 GreetingHandler.handle(member);
+                GuildAddHandler.handle(member);
 
             }))
+
+            .on('voiceStateUpdate', (oldMember, newMember) => {
+
+                VoiceChannelHandler.handle(oldMember, newMember);
+
+            })
 
             .on('message', (message => {
 
@@ -111,6 +120,7 @@ export class Bot {
             [ 'info', 'Info' ],
             [ 'fun', 'Fun Stuff' ],
             [ 'karma', 'Karma Points' ],
+            [ 'moderation', 'Moderation Commands' ],
             [ 'trivia', 'Polls' ],
             [ 'raffle', 'Raffle' ],
             [ 'search', 'Search' ],
@@ -127,4 +137,6 @@ export class Bot {
     }
 
 }
+
+
 

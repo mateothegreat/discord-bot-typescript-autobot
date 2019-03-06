@@ -20,7 +20,7 @@ export default class TriviaNextCommand extends Command {
             throttling: {
 
                 usages: 1,
-                duration: 30000
+                duration: 5000
 
             }
 
@@ -74,7 +74,7 @@ export default class TriviaNextCommand extends Command {
                        message.channel.send(`Woohoo <@${ collected.first().author.id }>! You got the correct answer!`);
 
                    })
-                   .catch(collected => {
+                   .catch(() => {
 
                        message.channel.send(`Looks like nobody got the answer this time. The correct answer was '${ question.answer ? 'true' : 'false' }'.`);
 

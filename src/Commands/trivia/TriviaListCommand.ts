@@ -20,7 +20,7 @@ export default class TriviaListCommand extends Command {
             throttling: {
 
                 usages: 1,
-                duration: 10000
+                duration: 1000
 
             }
 
@@ -30,7 +30,7 @@ export default class TriviaListCommand extends Command {
 
     public async run(message: CommandMessage): Promise<Message | Message[]> {
 
-        if (message.member.roles.find(role => role.name === 'Staff')) {
+        if (message.member.roles.find(role => role.name === 'Sudoers') || message.member.roles.find(role => role.name === 'Terabytes')) {
 
             const results = await DB.getRepository(TriviaQuestion)
                                     .createQueryBuilder('trivia_question')
@@ -67,7 +67,7 @@ export default class TriviaListCommand extends Command {
             message.channel.send('You do not have permissions to do that bob :sob:');
 
         }
-        
+
     }
 
 }

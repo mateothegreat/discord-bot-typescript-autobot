@@ -20,7 +20,7 @@ export default class TriviaDeleteCommand extends Command {
             throttling: {
 
                 usages: 1,
-                duration: 10000
+                duration: 1000
 
             }
 
@@ -30,7 +30,7 @@ export default class TriviaDeleteCommand extends Command {
 
     public async run(message: CommandMessage): Promise<Message | Message[]> {
 
-        if (message.member.roles.find(role => role.name === 'Staff')) {
+        if (message.member.roles.find(role => role.name === 'Sudoers') || message.member.roles.find(role => role.name === 'Terabytes')) {
 
             const matches = message.cleanContent.match(/(\d+)/);
 
