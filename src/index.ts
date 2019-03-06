@@ -7,6 +7,7 @@ import { ChatMessage }                  from './db/entity/ChatMessage';
 import { KarmaPoint }                   from './db/entity/KarmaPoint';
 import { RaffleUser }                   from './db/entity/RaffleUser';
 import { TriviaQuestion }               from './db/entity/TriviaQuestion';
+import { VoiceChannelActivity }         from './db/entity/VoiceChannelActivity';
 
 export let DB: Connection;
 
@@ -27,8 +28,9 @@ async function dbConnect() {
             entities: [
                 ChatMessage,
                 KarmaPoint,
+                RaffleUser,
                 TriviaQuestion,
-                RaffleUser
+                VoiceChannelActivity
             ],
             synchronize: true,
             logging: true

@@ -20,7 +20,7 @@ export default class TriviaAddCommand extends Command {
             throttling: {
 
                 usages: 1,
-                duration: 10000
+                duration: 1000
 
             }
 
@@ -31,14 +31,14 @@ export default class TriviaAddCommand extends Command {
     // @ts-ignore
     public async run(message: CommandMessage): Promise<Message | Message[]> {
 
-        if (message.member.roles.find(role => role.name === 'Staff')) {
+        if (message.member.roles.find(role => role.name === 'Sudoers') || message.member.roles.find(role => role.name === 'Terabytes')) {
 
             const matches = message.cleanContent.match(/"(.*?)":\s+(\w+)/);
 
             const question: TriviaQuestion = new TriviaQuestion();
 
             question.question = matches[ 1 ];
-            question.answer = Boolean(matches[ 2 ]);
+            question.answer = matches[ 2 ] == 'true';
 
             DB.manager.save(question);
 

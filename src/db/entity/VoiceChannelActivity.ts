@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class ChatMessage {
+export class VoiceChannelActivity {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -15,11 +15,8 @@ export class ChatMessage {
     @Column()
     username: string;
 
-    @Column({ type: "blob" })
-    content: string;
-
     @Column()
-    channel: string;
+    status: string;
 
     @CreateDateColumn()
     createdDate: Date;
