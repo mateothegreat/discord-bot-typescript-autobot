@@ -6,10 +6,7 @@ export default class LMGTFYCommand extends Command {
 
     public static readonly HUGS: string[] = [
 
-        'https://tenor.com/view/virtual-hug-ghost-hug-gif-7939501',
-        'https://tenor.com/view/penguin-hug-virtual-gif-4532642',
         'https://thumbs.gfycat.com/AnyShadyDowitcher-small.gif',
-        'https://tenor.com/view/virtual-hug-random-hug-gif-7939558'
 
     ];
 
