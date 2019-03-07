@@ -25,9 +25,7 @@ export default class ColorCommand extends Command {
 
     }
 
-    public async run(msg: CommandMessage): Promise<Message | Message[]> {
-
-        console.log(msg.content);
+    public run(msg: CommandMessage): Promise<Message | Message[]> {
 
         const matches = msg.content.match(/>color #(.*)/);
 

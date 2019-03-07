@@ -13,8 +13,6 @@ export class KarmaPointHandler {
 
             const userids = message.content.match(/([\d]{18,})/g);
 
-            console.log(userids);
-
             for (let i = 0; i < userids.length; i++) {
 
                 CLIENT.fetchUser(userids[ i ]).then(member => {
@@ -56,6 +54,6 @@ export class KarmaPointHandler {
         }
 
     }
- 
+
 }
 
