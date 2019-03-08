@@ -23,7 +23,7 @@ export class KarmaPointHandler {
                         CLIENT.guilds.first().channels.get(message.channel.id).send(`Sorry <@${ message.author.id }>, you can't give karma to yourself. :sob:`);
 
                     } else {
-
+  
                         let karmaPoint: KarmaPoint = new KarmaPoint();
 
                         karmaPoint.from_userid = message.author.id;
