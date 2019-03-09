@@ -33,15 +33,19 @@ export default class TriviaDeleteCommand extends Command {
 
         if (message.member.roles.find(role => Config.ROLES_ADMIN.indexOf(role.name) > -1)) {
 
-            const matches = message.cleanContent.match(/(\d+)/);
+            const matches = message.cleanContent.match(/([\d]+)/g);
 
-            await DB.createQueryBuilder().delete().from(TriviaQuestion).where('id = :id', { id: matches[ 1 ] }).execute();
+            for (let i = 0; i < matches.length; i++) {
 
-            return message.channel.send(`Trivia Question # ${ matches[ 1 ] } has been deleted!`);
+                await DB.createQueryBuilder().delete().from(TriviaQuestion).where('id = :id', { id: matches[ i ] }).execute();
+
+                message.channel.send(`Trivia Question # ${ matches[ i ] } has been deleted!`);
+
+            }
 
         } else {
 
-            message.channel.send('You do not have permissions to do that bob :sob:');
+            return message.channel.send('You do not have permissions to do that bob :sob:');
 
         }
 

@@ -28,7 +28,6 @@ export default class TriviaNextCommand extends Command {
 
     }
 
-    // @ts-ignore
     public async run(message: CommandMessage): Promise<Message | Message[]> {
 
         let question: TriviaQuestion;
@@ -54,33 +53,41 @@ export default class TriviaNextCommand extends Command {
 
         }
 
-        const filter = (response: any) => {
+        if (question) {
 
-            return question.answer ? 'true' === response.content.toLowerCase() : 'false' == response.content.toLowerCase();
+            const filter = (response: any) => {
 
-        };
+                return question.answer.toLowerCase() === response.content.toLowerCase();
 
-        message.channel.sendEmbed({
+            };
 
-            color: 3447003,
-            description: `True or False: **${ question.question }**`
+            message.channel.sendEmbed({
 
-        }).then(() => {
+                color: 3447003,
+                description: `${ question.question }`
 
-            message.channel
-                   .awaitMessages(filter, { maxMatches: 1, time: 60 * 60 * 1000, errors: [ 'time' ] })
-                   .then(collected => {
+            }).then(() => {
 
-                       message.channel.send(`Woohoo <@${ collected.first().author.id }>! You got the correct answer!`);
+                message.channel
+                       .awaitMessages(filter, { maxMatches: 1, time: 60 * 60 * 1000, errors: [ 'time' ] })
+                       .then(collected => {
 
-                   })
-                   .catch(() => {
+                           message.channel.send(`Woohoo <@${ collected.first().author.id }>! You got the correct answer!`);
 
-                       message.channel.send(`Looks like nobody got the answer this time. The correct answer was '${ question.answer ? 'true' : 'false' }'.`);
+                       })
+                       .catch(() => {
 
-                   });
+                           message.channel.send(`Looks like nobody got the answer this time. The correct answer was '${ question.answer ? 'true' : 'false' }'.`);
 
-        });
+                       });
+
+            });
+
+        } else {
+
+            return message.channel.send(`Could not locate question id ${ matches[ 1 ] } :sob:`);
+
+        }
 
     }
 

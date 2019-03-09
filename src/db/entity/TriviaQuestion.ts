@@ -6,11 +6,14 @@ export class TriviaQuestion {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ type: "blob" })
     question: string;
 
+    @Column({ type: "blob" })
+    description: string;
+
     @Column()
-    answer: boolean;
+    answer: string;
 
     @CreateDateColumn()
     createdDate: Date;
