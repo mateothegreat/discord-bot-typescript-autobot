@@ -1,5 +1,6 @@
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
+import { TriviaPoint }                             from '../../db/entity/TriviaPoint';
 import { TriviaQuestion }                          from '../../db/entity/TriviaQuestion';
 import { DB }                                      from '../../index';
 
@@ -10,7 +11,7 @@ export default class TriviaNextCommand extends Command {
         super(client, {
 
             name: 'trivia.next',
-            aliases: [ 'trivia.next' ],
+            aliases: [ 'trivia' ],
             group: 'trivia',
             memberName: 'trivia.next',
             description: 'Asks a trivia question',
@@ -18,7 +19,7 @@ export default class TriviaNextCommand extends Command {
             throttling: {
 
                 usages: 1,
-                duration: 5000
+                duration: 30000
 
             }
 
@@ -70,7 +71,16 @@ export default class TriviaNextCommand extends Command {
                        .awaitMessages(filter, { maxMatches: 1, time: 60 * 60 * 1000, errors: [ 'time' ] })
                        .then(collected => {
 
-                           message.channel.send(`Woohoo <@${ collected.first().author.id }>! You got the correct answer!`);
+                           message.channel.send(`Woohoo <@${ collected.first().author.id }>! You got the correct answer & earned a point!\nUse \`>trivia.stats\` to see the leaderboard!`);
+
+                           const point: TriviaPoint = new TriviaPoint();
+
+                           point.userid = collected.first().author.id;
+                           point.username = collected.first().author.username;
+                           point.discriminator = collected.first().author.discriminator;
+                           point.question_id = question.id;
+
+                           DB.manager.save(point);
 
                        })
                        .catch(() => {

@@ -42,9 +42,9 @@ export default class TriviaAddCommand extends Command {
             question.answer = matches[ 2 ];
             question.description = matches[ 3 ] ? matches[ 3 ] : '';
 
-            DB.manager.save(question);
+            const inserted = await DB.manager.save(question);
 
-            message.channel.send('Trivia Question has been added!');
+            message.channel.send(`Trivia #${ inserted.id } Question has been added!`);
 
         } else {
 

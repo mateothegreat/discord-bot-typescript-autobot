@@ -6,6 +6,7 @@ import { Bot }                          from './Bot';
 import { ChatMessage }                  from './db/entity/ChatMessage';
 import { KarmaPoint }                   from './db/entity/KarmaPoint';
 import { RaffleUser }                   from './db/entity/RaffleUser';
+import { TriviaPoint }                  from './db/entity/TriviaPoint';
 import { TriviaQuestion }               from './db/entity/TriviaQuestion';
 import { VoiceChannelActivity }         from './db/entity/VoiceChannelActivity';
 
@@ -29,6 +30,7 @@ async function dbConnect() {
                 ChatMessage,
                 KarmaPoint,
                 RaffleUser,
+                TriviaPoint,
                 TriviaQuestion,
                 VoiceChannelActivity
             ],
