@@ -34,9 +34,7 @@ export default class TriviaAddCommand extends Command {
 
         if (message.member.roles.find(role => Config.ROLES_ADMIN.indexOf(role.name) > -1)) {
 
-            const matches = message.cleanContent.match(/"(.*?)".*?=\s+(\w+)/s);
-
-            console.log(matches);
+            const matches = message.cleanContent.match(/"(.*?)".*?=\s?(\w+)/s);
 
             const question: TriviaQuestion = new TriviaQuestion();
 
