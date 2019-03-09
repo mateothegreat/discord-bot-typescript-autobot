@@ -45,7 +45,7 @@ export default class TriviaListCommand extends Command {
                 fields.push({
 
                     name: `#${ row.id }`,
-                    value: `❯ ${ row.question }\n--\n`,
+                    value: `❯ ${ row.question }\n---`,
                     inline: false
 
                 });
@@ -59,7 +59,6 @@ export default class TriviaListCommand extends Command {
                 fields
 
             });
-
 
         } else {
 

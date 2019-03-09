@@ -1,7 +1,5 @@
-// @ts-ignore
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
-import 'moment-duration-format';
 import { TriviaQuestion }                          from '../../db/entity/TriviaQuestion';
 import { DB }                                      from '../../index';
 
