@@ -18,7 +18,7 @@ export default class JavascriptCommand extends Command {
             throttling: {
 
                 usages: 1,
-                duration: 3000
+                duration: 3
 
             }
 

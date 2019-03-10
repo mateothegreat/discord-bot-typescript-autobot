@@ -13,41 +13,45 @@ export class KarmaPointHandler {
 
             const userids = message.content.match(/([\d]{18,})/g);
 
-            for (let i = 0; i < userids.length; i++) {
+            if (userids) {
 
-                CLIENT.fetchUser(userids[ i ]).then(member => {
+                for (let i = 0; i < userids.length; i++) {
 
-                    if (message.member.id === member.id) {
+                    CLIENT.fetchUser(userids[ i ]).then(member => {
 
-                        // @ts-ignore
-                        CLIENT.guilds.first().channels.get(message.channel.id).send(`Sorry <@${ message.author.id }>, you can't give karma to yourself. :sob:`);
+                        if (message.member.id === member.id) {
 
-                    } else {
-  
-                        let karmaPoint: KarmaPoint = new KarmaPoint();
+                            // @ts-ignore
+                            CLIENT.guilds.first().channels.get(message.channel.id).send(`Sorry <@${ message.author.id }>, you can't give karma to yourself. :sob:`);
 
-                        karmaPoint.from_userid = message.author.id;
-                        karmaPoint.from_discriminator = message.author.discriminator;
-                        karmaPoint.from_username = message.author.username;
+                        } else {
 
-                        karmaPoint.to_userid = member.id;
-                        karmaPoint.to_discriminator = member.discriminator;
-                        karmaPoint.to_username = member.username;
+                            let karmaPoint: KarmaPoint = new KarmaPoint();
 
-                        DB.manager.save(karmaPoint);
+                            karmaPoint.from_userid = message.author.id;
+                            karmaPoint.from_discriminator = message.author.discriminator;
+                            karmaPoint.from_username = message.author.username;
 
-                        const embed = new RichEmbed().setTitle(`Learn more about Karma Points..`)
-                                                     .setDescription(`Congratulations <@${ member.id }>, you've received a Karma Point!`)
-                                                     .setAuthor(`Karma From ${ message.author.username }`)
-                                                     .setColor(0x00AE86)
-                                                     .setURL("https://forum.bitmerge.org/t/server-karma-points");
+                            karmaPoint.to_userid = member.id;
+                            karmaPoint.to_discriminator = member.discriminator;
+                            karmaPoint.to_username = member.username;
 
-                        // @ts-ignore
-                        CLIENT.guilds.first().channels.get(message.channel.id).send({ embed });
+                            DB.manager.save(karmaPoint);
 
-                    }
+                            const embed = new RichEmbed().setTitle(`Learn more about Karma Points..`)
+                                                         .setDescription(`Congratulations <@${ member.id }>, you've received a Karma Point!`)
+                                                         .setAuthor(`Karma From ${ message.author.username }`)
+                                                         .setColor(0x00AE86)
+                                                         .setURL("https://forum.bitmerge.org/t/server-karma-points");
 
-                });
+                            // @ts-ignore
+                            CLIENT.guilds.first().channels.get(message.channel.id).send({ embed });
+
+                        }
+
+                    });
+
+                }
 
             }
 
