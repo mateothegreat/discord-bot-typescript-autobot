@@ -10,7 +10,7 @@ export default class KnowledgebaseGetCommand extends Command {
         super(client, {
 
             name: 'kb',
-            aliases: [ 'kb' ],
+            aliases: [ 'k' ],
             group: 'kb',
             memberName: 'kb',
             description: 'Retrieves a KB entry (i.e.: `>kb docker`)',
@@ -33,7 +33,7 @@ export default class KnowledgebaseGetCommand extends Command {
         const matches = message.content.match(/\s+(\w+)/);
 
         message.delete();
-        
+
         if (matches) {
 
             kb = await DB.getRepository(KB)
@@ -46,10 +46,11 @@ export default class KnowledgebaseGetCommand extends Command {
 
         if (kb) {
 
-            return message.channel.send(new RichEmbed().setTitle(kb.title)
-                                                       .setDescription(kb.content)
+            return message.channel.send(new RichEmbed().setTitle(kb.title ? kb.title : '')
+                                                       .setDescription(kb.content ? kb.content : '')
                                                        .setThumbnail(kb.thumbnail)
-                                                       .setFooter(`Category: ${ kb.category }`));
+                                                       .setImage(kb.image)
+                                                       .setFooter(kb.category ? `Category: ${ kb.category }` : ''));
 
         } else {
 

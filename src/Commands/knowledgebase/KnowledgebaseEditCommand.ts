@@ -75,9 +75,13 @@ export default class KnowledgebaseEditCommand extends Command {
 
                         kb.thumbnail = matches[ 3 ];
 
+                    } else if (matches[ 2 ] === 'image') {
+
+                        kb.image = matches[ 3 ];
+
                     } else {
 
-                        return message.channel.send("Argument not found.\n\nUsage:\n> kb.edit # command|category|title|content|footer|thumbnail <value>");
+                        return message.channel.send("Argument not found.\n\nUsage:\n> kb.edit # command|category|title|content|footer|thumbnail|image <value>");
 
                     }
 
@@ -87,7 +91,7 @@ export default class KnowledgebaseEditCommand extends Command {
 
                 } else {
 
-                    return message.channel.send("Argument not found.\n\nUsage:\n> kb.edit # command|category|title|content|footer|thumbnail <value>");
+                    return message.channel.send("Argument not found.\n\nUsage:\n> kb.edit # command|category|title|content|footer|thumbnail|image <value>");
 
                 }
 

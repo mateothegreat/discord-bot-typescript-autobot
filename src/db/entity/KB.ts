@@ -30,6 +30,9 @@ export class KB {
     @Column({ nullable: true })
     thumbnail: string;
 
+    @Column({ nullable: true })
+    image: string;
+
 }
 
 
