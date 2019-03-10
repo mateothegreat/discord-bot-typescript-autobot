@@ -121,6 +121,7 @@ export class Bot {
             [ 'fun', 'Fun Stuff' ],
             [ 'karma', 'Karma Points' ],
             [ 'moderation', 'Moderation Commands' ],
+            [ 'profile', 'Manage your Extended Profile' ],
             [ 'programming', 'Programming/Development' ],
             [ 'trivia', 'Polls' ],
             [ 'raffle', 'Raffle' ],

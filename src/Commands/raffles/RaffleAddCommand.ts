@@ -1,4 +1,3 @@
-// @ts-ignore
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 import { RaffleUser }                              from '../../db/entity/RaffleUser';
@@ -19,7 +18,7 @@ export default class LMGTFYCommand extends Command {
             throttling: {
 
                 usages: 1,
-                duration: 3600
+                duration: 60 * 60 * 24 * 1000
 
             }
 
@@ -48,7 +47,7 @@ export default class LMGTFYCommand extends Command {
             fields: [ {
 
                 name: `❯ You've been added to this months raffle!`,
-                value: `1-month Nitro gift by one of our members. Use > raffleadd to get your hat in the ring! Raffles results will be announced at the end of the month.`,
+                value: `1-month Nitro gift by one of our members. Use \`> raffleadd\` to get your hat in the ring! Raffles results will be announced at the end of the month.`,
                 inline: true
 
             } ]

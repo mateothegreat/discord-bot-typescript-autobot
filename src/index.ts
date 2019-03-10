@@ -5,6 +5,7 @@ import { Connection, createConnection } from 'typeorm';
 import { Bot }                          from './Bot';
 import { ChatMessage }                  from './db/entity/ChatMessage';
 import { KarmaPoint }                   from './db/entity/KarmaPoint';
+import { Profile }                      from './db/entity/Profile';
 import { RaffleUser }                   from './db/entity/RaffleUser';
 import { TriviaPoint }                  from './db/entity/TriviaPoint';
 import { TriviaQuestion }               from './db/entity/TriviaQuestion';
@@ -29,6 +30,7 @@ async function dbConnect() {
             entities: [
                 ChatMessage,
                 KarmaPoint,
+                Profile,
                 RaffleUser,
                 TriviaPoint,
                 TriviaQuestion,

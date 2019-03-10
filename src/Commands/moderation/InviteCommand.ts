@@ -1,17 +1,17 @@
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 
-export default class ReportCommand extends Command {
+export default class InviteCommand extends Command {
 
     public constructor(client: CommandoClient) {
 
         super(client, {
 
-            name: 'report',
-            aliases: [ 'report' ],
+            name: 'invite',
+            aliases: [ 'invite' ],
             group: 'moderation',
-            memberName: 'report',
-            description: 'Sends a report to all staff members.',
+            memberName: 'invite',
+            description: 'Sends an invite code to the channel.',
             guildOnly: false,
             throttling: {
 

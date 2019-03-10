@@ -1,4 +1,3 @@
-// @ts-ignore
 import { Message, RichEmbed }                      from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 
@@ -19,7 +18,7 @@ export default class JavascriptCommand extends Command {
             throttling: {
 
                 usages: 1,
-                duration: 3600
+                duration: 3000
 
             }
 

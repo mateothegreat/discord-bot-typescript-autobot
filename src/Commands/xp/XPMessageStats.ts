@@ -1,7 +1,5 @@
-// @ts-ignore
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
-import 'moment-duration-format';
 import { ChatMessage }                             from '../../db/entity/ChatMessage';
 import { DB }                                      from '../../index';
 
@@ -35,7 +33,7 @@ export default class InfoCommand extends Command {
                                 .select([ 'userid', 'discriminator', 'username', 'COUNT(chat_messages.id) AS total' ])
                                 .orderBy('total', 'DESC')
                                 .groupBy('userid,discriminator,username')
-                                .limit(10)
+                                .limit(15)
                                 .getRawMany();
 
         let fields: any[] = [];
@@ -55,7 +53,7 @@ export default class InfoCommand extends Command {
         return await msg.embed({
 
             color: 3447003,
-            description: '**Top 10 Chatterboxes**',
+            description: '**Top 15 Chatterboxes**',
             fields
 
         });

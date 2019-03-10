@@ -1,7 +1,5 @@
-// @ts-ignore
 import { Channel, Message }                        from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
-import 'moment-duration-format';
 import { Config }                                  from '../../Config';
 
 export default class ChannelTopicSet extends Command {
