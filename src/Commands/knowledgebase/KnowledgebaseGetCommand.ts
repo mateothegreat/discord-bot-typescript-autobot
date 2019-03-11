@@ -32,8 +32,6 @@ export default class KnowledgebaseGetCommand extends Command {
 
         const matches = message.content.match(/\s+(\w+)/);
 
-        message.delete();
-
         if (matches) {
 
             kb = await DB.getRepository(KB)
