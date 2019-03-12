@@ -1,4 +1,4 @@
-# BitBot for bitmerge
+# discord bot written with typescript
 
 ## Features
 
