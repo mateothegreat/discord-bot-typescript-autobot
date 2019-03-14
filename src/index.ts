@@ -14,6 +14,10 @@ import { VoiceChannelActivity }         from './db/entity/VoiceChannelActivity';
 
 export let DB: Connection;
 
+//
+// Load your .env file and make it's contents available as
+// environment variables.
+//
 dotenv.config();
 
 async function dbConnect() {
@@ -51,9 +55,18 @@ async function dbConnect() {
 
 }
 
+//
+// Connect to our database
+//
 dbConnect();
 
+//
+// Instantiate the Bot Class
+//
 const bot: Bot = new Bot();
 
+//
+// Start the bot
+//
 bot.start(process.env.TOKEN);
 
