@@ -11,31 +11,21 @@ export class MessageHandler {
 
             if (!message.member.roles.find(role => role.name === 'Bits')) {
 
-                const results = await DB.getRepository(ChatMessage)
-                                        .createQueryBuilder('chat_messages')
-                                        .select([ 'COUNT(chat_messages.id) AS total' ])
-                                        .where('userid = :userid', { userid: message.member.id })
-                                        .getRawOne();
+                try {
 
-                if (results.total >= 10) {
+                    await message.member.addRole(message.guild.roles.find(role => role.name === 'Bits'));
 
-                    try {
+                    const embed = new RichEmbed().setTitle(`Learn more about Server Roles..`)
+                                                 .setDescription(`Congratulations <@${ message.member.id }>, you've received the Bits Role! You can now join the voice chat and #voice-text channels and raffles.`)
+                                                 .setColor(0x00AE86)
+                                                 .setURL("https://forum.bitmerge.org/t/roles");
 
-                        await message.member.addRole(message.guild.roles.find(role => role.name === 'Bits'));
+                    // @ts-ignore
+                    CLIENT.guilds.first().channels.get(message.channel.id).send({ embed }).delete(15000);
 
-                        const embed = new RichEmbed().setTitle(`Learn more about Server Roles..`)
-                                                     .setDescription(`Congratulations <@${ message.member.id }>, you've received the Bits Role! You can now join the voice chat and #voice-text channels and raffles.`)
-                                                     .setColor(0x00AE86)
-                                                     .setURL("https://forum.bitmerge.org/t/roles");
+                } catch (e) {
 
-                        // @ts-ignore
-                        CLIENT.guilds.first().channels.get(message.channel.id).send({ embed });
-
-                    } catch (e) {
-
-                        console.log(e);
-
-                    }
+                    console.log(e);
 
                 }
 
