@@ -1,7 +1,6 @@
-// @ts-ignore
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
-import 'moment-duration-format';
+import { Config }                                  from '../../Config';
 import { TriviaQuestion }                          from '../../db/entity/TriviaQuestion';
 import { DB }                                      from '../../index';
 
@@ -12,7 +11,7 @@ export default class TriviaListCommand extends Command {
         super(client, {
 
             name: 'trivia.list',
-            aliases: [ 'trivia.list' ],
+            aliases: [ 'list' ],
             group: 'trivia',
             memberName: 'trivia.list',
             description: 'Lists trivia questions.',
@@ -30,7 +29,7 @@ export default class TriviaListCommand extends Command {
 
     public async run(message: CommandMessage): Promise<Message | Message[]> {
 
-        if (message.member.roles.find(role => role.name === 'Sudoers') || message.member.roles.find(role => role.name === 'Terabytes')) {
+        if (message.member.roles.find(role => Config.ROLES_ADMIN.indexOf(role.name) > -1)) {
 
             const results = await DB.getRepository(TriviaQuestion)
                                     .createQueryBuilder('trivia_question')
@@ -46,7 +45,7 @@ export default class TriviaListCommand extends Command {
                 fields.push({
 
                     name: `#${ row.id }`,
-                    value: `❯ ${ row.question }`,
+                    value: `❯ ${ row.question }\n---`,
                     inline: false
 
                 });
@@ -60,7 +59,6 @@ export default class TriviaListCommand extends Command {
                 fields
 
             });
-
 
         } else {
 

@@ -1,19 +1,22 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class TriviaQuestion {
+export class TriviaPoint {
 
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ type: "blob" })
-    question: string;
-
-    @Column({ type: "blob" })
-    description: string;
+    @Column()
+    userid: string;
 
     @Column()
-    answer: string;
+    discriminator: string;
+
+    @Column()
+    username: string;
+
+    @Column()
+    question_id: number;
 
     @CreateDateColumn()
     createdDate: Date;

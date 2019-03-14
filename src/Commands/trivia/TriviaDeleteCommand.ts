@@ -1,7 +1,7 @@
-// @ts-ignore
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 import 'moment-duration-format';
+import { Config }                                  from '../../Config';
 import { TriviaQuestion }                          from '../../db/entity/TriviaQuestion';
 import { DB }                                      from '../../index';
 
@@ -30,17 +30,21 @@ export default class TriviaDeleteCommand extends Command {
 
     public async run(message: CommandMessage): Promise<Message | Message[]> {
 
-        if (message.member.roles.find(role => role.name === 'Sudoers') || message.member.roles.find(role => role.name === 'Terabytes')) {
+        if (message.member.roles.find(role => Config.ROLES_ADMIN.indexOf(role.name) > -1)) {
 
-            const matches = message.cleanContent.match(/(\d+)/);
+            const matches = message.cleanContent.match(/([\d]+)/g);
 
-            await DB.createQueryBuilder().delete().from(TriviaQuestion).where('id = :id', { id: matches[ 1 ] }).execute();
+            for (let i = 0; i < matches.length; i++) {
 
-            return message.channel.send(`Trivia Question # ${ matches[ 1 ] } has been deleted!`);
+                await DB.createQueryBuilder().delete().from(TriviaQuestion).where('id = :id', { id: matches[ i ] }).execute();
+
+                message.channel.send(`Trivia Question # ${ matches[ i ] } has been deleted!`);
+
+            }
 
         } else {
 
-            message.channel.send('You do not have permissions to do that bob :sob:');
+            return message.channel.send('You do not have permissions to do that bob :sob:');
 
         }
 

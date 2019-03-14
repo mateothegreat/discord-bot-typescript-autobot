@@ -41,7 +41,7 @@ export default class ColorCommand extends Command {
             description: "Welcome to **bitmerge**!\nWe're a community of technology enthusiasts, developers and devops engineers.\n\nCheck out our forum at https://forum.bitmerge.org/ and our github at https://github.com/bitmerge.\n\nDon't forget to tell us about yourself in #introduct-yourself!",
             files: [
 
-                'assets/logo.png'
+                'assets/logo-transparent.png'
 
             ]
         });

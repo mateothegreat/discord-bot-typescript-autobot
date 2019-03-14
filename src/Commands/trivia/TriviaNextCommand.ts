@@ -1,7 +1,6 @@
-// @ts-ignore
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
-import 'moment-duration-format';
+import { TriviaPoint }                             from '../../db/entity/TriviaPoint';
 import { TriviaQuestion }                          from '../../db/entity/TriviaQuestion';
 import { DB }                                      from '../../index';
 
@@ -12,7 +11,7 @@ export default class TriviaNextCommand extends Command {
         super(client, {
 
             name: 'trivia.next',
-            aliases: [ 'trivia.next' ],
+            aliases: [ 'trivia' ],
             group: 'trivia',
             memberName: 'trivia.next',
             description: 'Asks a trivia question',
@@ -20,7 +19,7 @@ export default class TriviaNextCommand extends Command {
             throttling: {
 
                 usages: 1,
-                duration: 5000
+                duration: 30000
 
             }
 
@@ -28,7 +27,6 @@ export default class TriviaNextCommand extends Command {
 
     }
 
-    // @ts-ignore
     public async run(message: CommandMessage): Promise<Message | Message[]> {
 
         let question: TriviaQuestion;
@@ -54,33 +52,50 @@ export default class TriviaNextCommand extends Command {
 
         }
 
-        const filter = (response: any) => {
+        if (question) {
 
-            return question.answer ? 'true' === response.content.toLowerCase() : 'false' == response.content.toLowerCase();
+            const filter = (response: any) => {
 
-        };
+                return question.answer.toLowerCase() === response.content.toLowerCase();
 
-        message.channel.sendEmbed({
+            };
 
-            color: 3447003,
-            description: `True or False: **${ question.question }**`
+            message.channel.sendEmbed({
 
-        }).then(() => {
+                color: 3447003,
+                description: `${ question.question }`
 
-            message.channel
-                   .awaitMessages(filter, { maxMatches: 1, time: 60 * 60 * 1000, errors: [ 'time' ] })
-                   .then(collected => {
+            }).then(() => {
 
-                       message.channel.send(`Woohoo <@${ collected.first().author.id }>! You got the correct answer!`);
+                message.channel
+                       .awaitMessages(filter, { maxMatches: 1, time: 60 * 60 * 1000, errors: [ 'time' ] })
+                       .then(collected => {
 
-                   })
-                   .catch(() => {
+                           message.channel.send(`Woohoo <@${ collected.first().author.id }>! You got the correct answer & earned a point!\nUse \`>trivia.stats\` to see the leaderboard!`);
 
-                       message.channel.send(`Looks like nobody got the answer this time. The correct answer was '${ question.answer ? 'true' : 'false' }'.`);
+                           const point: TriviaPoint = new TriviaPoint();
 
-                   });
+                           point.userid = collected.first().author.id;
+                           point.username = collected.first().author.username;
+                           point.discriminator = collected.first().author.discriminator;
+                           point.question_id = question.id;
 
-        });
+                           DB.manager.save(point);
+
+                       })
+                       .catch(() => {
+
+                           message.channel.send(`Looks like nobody got the answer this time. The correct answer was '${ question.answer ? 'true' : 'false' }'.`);
+
+                       });
+
+            });
+
+        } else {
+
+            return message.channel.send(`Could not locate question id ${ matches[ 1 ] } :sob:`);
+
+        }
 
     }
 

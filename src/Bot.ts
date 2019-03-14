@@ -120,7 +120,10 @@ export class Bot {
             [ 'info', 'Info' ],
             [ 'fun', 'Fun Stuff' ],
             [ 'karma', 'Karma Points' ],
+            [ 'kb', 'Knowledgebase' ],
             [ 'moderation', 'Moderation Commands' ],
+            [ 'profile', 'Manage your Extended Profile' ],
+            [ 'programming', 'Programming/Development' ],
             [ 'trivia', 'Polls' ],
             [ 'raffle', 'Raffle' ],
             [ 'search', 'Search' ],
@@ -137,6 +140,5 @@ export class Bot {
     }
 
 }
-
 
 

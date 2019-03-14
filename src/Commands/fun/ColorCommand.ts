@@ -1,4 +1,3 @@
-// @ts-ignore
 import { Message, RichEmbed }                      from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 
@@ -25,9 +24,7 @@ export default class ColorCommand extends Command {
 
     }
 
-    public async run(msg: CommandMessage): Promise<Message | Message[]> {
-
-        console.log(msg.content);
+    public run(msg: CommandMessage): Promise<Message | Message[]> {
 
         const matches = msg.content.match(/>color #(.*)/);
 

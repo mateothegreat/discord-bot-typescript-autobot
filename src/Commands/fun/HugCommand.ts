@@ -4,6 +4,12 @@ import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 
 export default class LMGTFYCommand extends Command {
 
+    public static readonly HUGS: string[] = [
+
+        'https://thumbs.gfycat.com/AnyShadyDowitcher-small.gif',
+
+    ];
+
     public constructor(client: CommandoClient) {
 
         super(client, {
@@ -28,7 +34,7 @@ export default class LMGTFYCommand extends Command {
     public async run(msg: CommandMessage): Promise<Message | Message[]> {
 
         const embed = new RichEmbed().setColor(0x00AE86)
-                                     .setImage('https://thumbs.gfycat.com/AnyShadyDowitcher-small.gif');
+                                     .setImage(LMGTFYCommand.HUGS[ Math.floor(Math.random() * LMGTFYCommand.HUGS.length) ]);
 
         return msg.embed(embed);
 

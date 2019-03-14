@@ -5,12 +5,19 @@ import { Connection, createConnection } from 'typeorm';
 import { Bot }                          from './Bot';
 import { ChatMessage }                  from './db/entity/ChatMessage';
 import { KarmaPoint }                   from './db/entity/KarmaPoint';
+import { KB }                           from './db/entity/KB';
+import { Profile }                      from './db/entity/Profile';
 import { RaffleUser }                   from './db/entity/RaffleUser';
+import { TriviaPoint }                  from './db/entity/TriviaPoint';
 import { TriviaQuestion }               from './db/entity/TriviaQuestion';
 import { VoiceChannelActivity }         from './db/entity/VoiceChannelActivity';
 
 export let DB: Connection;
 
+//
+// Load your .env file and make it's contents available as
+// environment variables.
+//
 dotenv.config();
 
 async function dbConnect() {
@@ -28,7 +35,10 @@ async function dbConnect() {
             entities: [
                 ChatMessage,
                 KarmaPoint,
+                KB,
+                Profile,
                 RaffleUser,
+                TriviaPoint,
                 TriviaQuestion,
                 VoiceChannelActivity
             ],
@@ -45,9 +55,18 @@ async function dbConnect() {
 
 }
 
+//
+// Connect to our database
+//
 dbConnect();
 
+//
+// Instantiate the Bot Class
+//
 const bot: Bot = new Bot();
 
+//
+// Start the bot
+//
 bot.start(process.env.TOKEN);
 

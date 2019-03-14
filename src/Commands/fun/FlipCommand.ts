@@ -1,4 +1,3 @@
-// @ts-ignore
 import { Message, RichEmbed }                      from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 
@@ -17,7 +16,7 @@ export default class LMGTFYCommand extends Command {
             throttling: {
 
                 usages: 1,
-                duration: 60000
+                duration: 5
 
             }
 

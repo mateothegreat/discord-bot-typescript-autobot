@@ -1,19 +1,20 @@
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
-import { ChatMessage }                             from '../../db/entity/ChatMessage';
+import 'moment-duration-format';
+import { TriviaPoint }                             from '../../db/entity/TriviaPoint';
 import { DB }                                      from '../../index';
 
-export default class InfoCommand extends Command {
+export default class TriviaStatsCommand extends Command {
 
     public constructor(client: CommandoClient) {
 
         super(client, {
 
-            name: 'xp.messages',
-            aliases: [ 'messages' ],
-            group: 'xp',
-            memberName: 'xp.messages',
-            description: 'Displays message statistics',
+            name: 'trivia.stats',
+            aliases: [ 'trivia.stats' ],
+            group: 'trivia',
+            memberName: 'trivia.stats',
+            description: 'Displays trivia leaderboard',
             guildOnly: false,
             throttling: {
 
@@ -28,12 +29,12 @@ export default class InfoCommand extends Command {
 
     public async run(msg: CommandMessage): Promise<Message | Message[]> {
 
-        const results = await DB.getRepository(ChatMessage)
-                                .createQueryBuilder('chat_messages')
-                                .select([ 'userid', 'discriminator', 'username', 'COUNT(chat_messages.id) AS total' ])
+        const results = await DB.getRepository(TriviaPoint)
+                                .createQueryBuilder('trivia_point')
+                                .select([ 'userid', 'discriminator', 'username', 'COUNT(trivia_point.id) AS total' ])
                                 .orderBy('total', 'DESC')
                                 .groupBy('userid,discriminator,username')
-                                .limit(15)
+                                .limit(10)
                                 .getRawMany();
 
         let fields: any[] = [];
@@ -42,7 +43,7 @@ export default class InfoCommand extends Command {
 
             fields.push({
 
-                name: `❯ ${ row.total } messages`,
+                name: `❯ ${ row.total } points`,
                 value: `<@${ row.userid }>`,
                 inline: true
 
@@ -53,7 +54,7 @@ export default class InfoCommand extends Command {
         return await msg.embed({
 
             color: 3447003,
-            description: '**Top 15 Chatterboxes**',
+            description: '**Trivia Points Leaderboard**',
             fields
 
         });
