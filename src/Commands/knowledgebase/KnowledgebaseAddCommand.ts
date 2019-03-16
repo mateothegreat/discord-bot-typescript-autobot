@@ -2,7 +2,7 @@ import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 import 'moment-duration-format';
 import { Config }                                  from '../../Config';
-import { KB }                                      from '../../db/entity/KB';
+import { KB }                                      from '../../db/entities/KB';
 import { DB }                                      from '../../index';
 
 export default class KnowledgebaseAddCommand extends Command {

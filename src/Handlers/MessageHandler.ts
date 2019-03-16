@@ -1,6 +1,6 @@
 import { Message, RichEmbed } from 'discord.js';
 import { CLIENT }             from '../Bot';
-import { ChatMessage }        from '../db/entity/ChatMessage';
+import { ChatMessage }        from '../db/entities/ChatMessage';
 import { DB }                 from '../index';
 
 export class MessageHandler {

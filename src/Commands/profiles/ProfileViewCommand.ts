@@ -2,7 +2,7 @@
 import { Message, RichEmbed, User }                from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 import { CLIENT }                                  from '../../Bot';
-import { Profile }                                 from '../../db/entity/Profile';
+import { Profile }                                 from '../../db/entities/Profile';
 import { DB }                                      from '../../index';
 
 export default class ProfileViewCommand extends Command {

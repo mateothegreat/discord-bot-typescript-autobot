@@ -2,7 +2,7 @@ import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 import 'moment-duration-format';
 import { Config }                                  from '../../Config';
-import { TriviaQuestion }                          from '../../db/entity/TriviaQuestion';
+import { TriviaQuestion }                          from '../../db/entities/TriviaQuestion';
 import { DB }                                      from '../../index';
 
 export default class TriviaNextCommand extends Command {

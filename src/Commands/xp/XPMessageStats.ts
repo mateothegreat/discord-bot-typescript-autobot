@@ -1,6 +1,6 @@
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
-import { ChatMessage }                             from '../../db/entity/ChatMessage';
+import { ChatMessage }                             from '../../db/entities/ChatMessage';
 import { DB }                                      from '../../index';
 
 export default class InfoCommand extends Command {

@@ -2,7 +2,7 @@
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 import 'moment-duration-format';
-import { KarmaPoint }                              from '../../db/entity/KarmaPoint';
+import { KarmaPoint }                              from '../../db/entities/KarmaPoint';
 import { DB }                                      from '../../index';
 
 export default class KarmaStatsCommand extends Command {

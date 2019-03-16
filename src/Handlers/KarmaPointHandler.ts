@@ -1,6 +1,6 @@
 import { Message, RichEmbed } from 'discord.js';
 import { CLIENT }             from '../Bot';
-import { KarmaPoint }         from '../db/entity/KarmaPoint';
+import { KarmaPoint }         from '../db/entities/KarmaPoint';
 import { DB }                 from '../index';
 
 export class KarmaPointHandler {
