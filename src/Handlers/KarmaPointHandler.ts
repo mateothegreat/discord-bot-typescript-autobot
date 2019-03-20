@@ -7,7 +7,7 @@ export class KarmaPointHandler {
 
     public static handle(message: Message): any {
 
-        const matches = message.content.match(/(thanks|thank you)/);
+        const matches = message.content.match(/(thanks|thank you)/i);
 
         if (matches && matches.length > 0) {
 
