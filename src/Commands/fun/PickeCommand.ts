@@ -41,6 +41,7 @@ export default class PickeCommand extends Command {
                 'assets/pickle.gif'
 
             ]
+
         });
     }
 
