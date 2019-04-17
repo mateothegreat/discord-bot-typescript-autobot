@@ -33,7 +33,7 @@ export default class LMGTFYCommand extends Command {
             fields: [ {
 
                 name: '❯ This months raffle',
-                value: `1-month Nitro gift by one of our members. Use \`> raffleadd\` to get your hat in the ring! Raffles results will be announced at the end of the month.`,
+                value: `HUGE humblebundle giveaway by one of our members (https://www.humblebundle.com/books/coders-bookshelf-books). Use \`> raffleadd\` to get your hat in the ring! Raffles results will be announced at the end of the month.`,
                 inline: true
 
             } ]
