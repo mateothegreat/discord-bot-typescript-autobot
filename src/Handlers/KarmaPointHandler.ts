@@ -1,13 +1,13 @@
 import { Message, RichEmbed } from 'discord.js';
 import { CLIENT }             from '../Bot';
-import { KarmaPoint }         from '../db/entity/KarmaPoint';
+import { KarmaPoint }         from '../db/entities/KarmaPoint';
 import { DB }                 from '../index';
 
 export class KarmaPointHandler {
 
     public static handle(message: Message): any {
 
-        const matches = message.content.match(/(thanks|thank you)/);
+        const matches = message.content.match(/(thanks|thank you)/i);
 
         if (matches && matches.length > 0) {
 

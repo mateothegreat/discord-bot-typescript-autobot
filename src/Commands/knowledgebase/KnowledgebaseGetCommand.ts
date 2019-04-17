@@ -1,6 +1,6 @@
 import { Message, RichEmbed }                      from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
-import { KB }                                      from '../../db/entity/KB';
+import { KB }                                      from '../../db/entities/KB';
 import { DB }                                      from '../../index';
 
 export default class KnowledgebaseGetCommand extends Command {

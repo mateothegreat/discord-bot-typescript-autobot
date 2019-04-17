@@ -1,6 +1,6 @@
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
-import { RaffleUser }                              from '../../db/entity/RaffleUser';
+import { RaffleUser }                              from '../../db/entities/RaffleUser';
 import { DB }                                      from '../../index';
 
 export default class LMGTFYCommand extends Command {

@@ -1,7 +1,7 @@
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 import 'moment-duration-format';
-import { TriviaPoint }                             from '../../db/entity/TriviaPoint';
+import { TriviaPoint }                             from '../../db/entities/TriviaPoint';
 import { DB }                                      from '../../index';
 
 export default class TriviaStatsCommand extends Command {

@@ -2,7 +2,7 @@
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
 import 'moment-duration-format';
-import { KarmaPoint }                              from '../../db/entity/KarmaPoint';
+import { KarmaPoint }                              from '../../db/entities/KarmaPoint';
 import { DB }                                      from '../../index';
 
 export default class KarmaStatsCommand extends Command {
@@ -35,7 +35,7 @@ export default class KarmaStatsCommand extends Command {
                                 .select([ 'to_userid', 'to_discriminator', 'to_username', 'COUNT(karma_point.id) AS total' ])
                                 .orderBy('total', 'DESC')
                                 .groupBy('to_userid,to_discriminator,to_username')
-                                .limit(10)
+                                .limit(22)
                                 .getRawMany();
 
         let fields: any[] = [];

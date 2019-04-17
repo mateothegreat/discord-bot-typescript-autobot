@@ -3,14 +3,14 @@ import * as dotenv                      from 'dotenv';
 import 'reflect-metadata';
 import { Connection, createConnection } from 'typeorm';
 import { Bot }                          from './Bot';
-import { ChatMessage }                  from './db/entity/ChatMessage';
-import { KarmaPoint }                   from './db/entity/KarmaPoint';
-import { KB }                           from './db/entity/KB';
-import { Profile }                      from './db/entity/Profile';
-import { RaffleUser }                   from './db/entity/RaffleUser';
-import { TriviaPoint }                  from './db/entity/TriviaPoint';
-import { TriviaQuestion }               from './db/entity/TriviaQuestion';
-import { VoiceChannelActivity }         from './db/entity/VoiceChannelActivity';
+import { ChatMessage }                  from './db/entities/ChatMessage';
+import { KarmaPoint }                   from './db/entities/KarmaPoint';
+import { KB }                           from './db/entities/KB';
+import { Profile }                      from './db/entities/Profile';
+import { RaffleUser }                   from './db/entities/RaffleUser';
+import { TriviaPoint }                  from './db/entities/TriviaPoint';
+import { TriviaQuestion }               from './db/entities/TriviaQuestion';
+import { VoiceChannelActivity }         from './db/entities/VoiceChannelActivity';
 
 export let DB: Connection;
 

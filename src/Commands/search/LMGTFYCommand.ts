@@ -35,7 +35,6 @@ export default class LMGTFYCommand extends Command {
                 name: 'Let me google that for you..',
                 value: `https://lmgtfy.com/?q=${ encodeURI(msg.argString) }`,
                 inline: true
-
             } ]
 
         });

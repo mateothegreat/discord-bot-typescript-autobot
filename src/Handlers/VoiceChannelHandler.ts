@@ -1,5 +1,5 @@
 import { GuildMember, Message, RichEmbed } from 'discord.js';
-import { VoiceChannelActivity }            from '../db/entity/VoiceChannelActivity';
+import { VoiceChannelActivity }            from '../db/entities/VoiceChannelActivity';
 import { DB }                              from '../index';
 
 export class VoiceChannelHandler {

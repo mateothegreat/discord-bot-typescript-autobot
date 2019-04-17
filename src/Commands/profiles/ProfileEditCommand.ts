@@ -1,7 +1,7 @@
 // @ts-ignore
 import { Message, RichEmbed }                      from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
-import { Profile }                                 from '../../db/entity/Profile';
+import { Profile }                                 from '../../db/entities/Profile';
 import { DB }                                      from '../../index';
 
 export default class ProfileEditCommand extends Command {

@@ -1,7 +1,7 @@
 import { Message }                                 from 'discord.js';
 import { Command, CommandMessage, CommandoClient } from 'discord.js-commando';
-import { TriviaPoint }                             from '../../db/entity/TriviaPoint';
-import { TriviaQuestion }                          from '../../db/entity/TriviaQuestion';
+import { TriviaPoint }                             from '../../db/entities/TriviaPoint';
+import { TriviaQuestion }                          from '../../db/entities/TriviaQuestion';
 import { DB }                                      from '../../index';
 
 export default class TriviaNextCommand extends Command {
