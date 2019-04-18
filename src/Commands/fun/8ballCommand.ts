@@ -38,7 +38,7 @@ export default class EightballCommand extends Command {
             throttling: {
 
                 usages: 1,
-                duration: 60000
+                duration: 3600
 
             }
 
