@@ -23,7 +23,7 @@ export class Bot {
             commandPrefix: '>',
             messageCacheLifetime: 30,
             messageSweepInterval: 60,
-            unknownCommandResponse: true,
+            unknownCommandResponse: false,
             owner: process.env.OWNER_ID
 
         });
