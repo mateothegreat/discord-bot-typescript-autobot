@@ -47,7 +47,7 @@ export default class LMGTFYCommand extends Command {
             fields: [ {
 
                 name: `❯ You've been added to this months raffle!`,
-                value: `HUGE humblebundle giveaway by one of our members (https://www.humblebundle.com/books/coders-bookshelf-books). Use \`> raffleadd\` to get your hat in the ring! Raffles results will be announced at the end of the month.`,
+                value: `$15 AMEX Gift Card! Use \`> raffleadd\` to get your hat in the ring! Raffles results will be announced at the end of the month.`,
                 inline: true
 
             } ]
