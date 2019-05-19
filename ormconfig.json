@@ -1,0 +1,19 @@
+{
+    "type": "mysql",
+    "host": "MYSQL_HOST",
+    "port": 3306,
+    "username": "MYSQL_USER",
+    "password": "MYSQL_PASSWORD",
+    "database": "MYSQL_DATABASE",
+    "synchronize": true,
+    "logging": true,
+    "entities": [
+        "dist/db/entity/*.js"
+    ],
+    "migrations": [
+        "dist/db/migration/**/*.js"
+    ],
+    "subscribers": [
+        "dist/db/subscriber/**/*.js"
+    ]
+}

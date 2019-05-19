@@ -1,50 +1,64 @@
 image: docker:latest
 
 services:
-    - docker:dind
+  - docker:dind
 
 stages:
-    - build
-    - deploy
+  - build
+  - deploy
 
 before_script:
-    - apk --update add git
-    - git submodule update --init
+  - apk --update add git
+  - git submodule update --init
 
 variables:
-    DOCKER_DRIVER: overlay2
+  DOCKER_DRIVER: overlay2
 
 build:
 
-    stage: build
+  stage: build
 
-    only:
-        - master
+  only:
+    - master
 
-    script:
-        - docker build --build-arg NPM_TOKEN="$NPM_TOKEN" -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA" .
-        - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-        - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA"
+  script:
+    - echo MYSQL_HOST=$MYSQL_HOST >> .env
+    - echo MYSQL_USER=$MYSQL_USER >> .env
+    - echo MYSQL_PASSWORD=$MYSQL_PASSWORD >> .env
+    - echo MYSQL_DATABASE=$MYSQL_DATABASE >> .env
+    - echo TOKEN=$TOKEN >> .env
+    - echo OWNER_ID=OWNER_ID >> .env
 
-    artifacts:
-        paths:
-            - node_modules
-        expire_in: 60 min
+    - sed -i "s/MYSQL_HOST/$MYSQL_HOST/g" ormconfig.json
+    - sed -i "s/MYSQL_USER/$MYSQL_USER/g" ormconfig.json
+    - sed -i "s/MYSQL_PASSWORD/$MYSQL_PASSWORD/g" ormconfig.json
+    - sed -i "s/MYSQL_DATABASE/$MYSQL_DATABASE/g" ormconfig.json
+    - sed -i "s/TOKEN/$TOKEN/g" ormconfig.json
+    - sed -i "s/OWNER_ID/OWNER_ID/g" ormconfig.json
+
+    - docker build --build-arg NPM_TOKEN="$NPM_TOKEN" -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA" .
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA"
+
+  artifacts:
+    paths:
+      - node_modules
+    expire_in: 60 min
 
 deploy-master:
 
-    stage: deploy
+  stage: deploy
 
-    image: mateothegreat/docker-alpine-gcloud-kubectl
+  image: mateothegreat/docker-alpine-gcloud-kubectl
 
-    only:
-        - master
+  only:
+    - master
 
-    script:
-        - kubectl config set-cluster kube-cluster --server="$K8_API_URL" --insecure-skip-tls-verify=true
-        - kubectl config set-credentials gitlab --token="$K8_TOKEN"
-        - kubectl config set-context default-context --cluster=kube-cluster --user=gitlab
-        - kubectl config use-context default-context
-        - apk --update add git
-        - git submodule update --init
-        - make install
+  script:
+    - kubectl config set-cluster kube-cluster --server="$K8_API_URL" --insecure-skip-tls-verify=true
+    - kubectl config set-credentials gitlab --token="$K8_TOKEN"
+    - kubectl config set-context default-context --cluster=kube-cluster --user=gitlab
+    - kubectl config use-context default-context
+    - apk --update add git
+    - git submodule update --init
+    - make install
