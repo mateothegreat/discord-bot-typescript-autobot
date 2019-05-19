@@ -11,6 +11,8 @@ spec:                               # The official specification matching object
       labels:                       # Labels used to group/categorize objects
         app: $APP                  # The name of this template
     spec:                           # Specification of the desired behaviour of this pod
+      imagePullSecrets:
+        - name: docker-registry-discord-bot-typescript-autobot
       containers:                   # List of containers belonging to this pod (cannot be changed/updated)
         - name: $APP                 # Name of this container
           image: $IMAGE                # Docker image used for this container
