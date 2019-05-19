@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN adduser -S bot
 
-COPY package.json .
+COPY . .
 
 RUN npm install
 RUN npm run build
