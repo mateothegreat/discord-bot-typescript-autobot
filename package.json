@@ -22,7 +22,7 @@
         "moment-duration-format": "^2.2.2",
         "mysql": "^2.16.0",
         "reflect-metadata": "^0.1.13",
-        "sequelize": "^4.42.0",
+        "sequelize": "^5.15.1",
         "typeorm": "^0.2.13",
         "vm2": "^3.6.10",
         "wikijs": "^4.13.0"
