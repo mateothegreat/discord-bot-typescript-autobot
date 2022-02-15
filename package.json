@@ -24,7 +24,7 @@
         "reflect-metadata": "^0.1.13",
         "sequelize": "^4.42.0",
         "typeorm": "^0.2.13",
-        "vm2": "^3.6.10",
+        "vm2": "^3.9.6",
         "wikijs": "^4.13.0"
     },
     "devDependencies": {
